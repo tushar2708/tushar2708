@@ -1,0 +1,28 @@
+{
+  "activity": {
+    "release_limit": 3,
+    "article_limit": 3,
+    "release_repositories": [
+      "SmrutAI/pedantigo",
+      "Bytonomics/smartcache",
+      "SmrutAI/smritea-sdk",
+      "Bytonomics/cld-gateway",
+      "SmrutAI/databridge",
+      "tushar2708/claude-assets"
+    ],
+    "feeds": [
+      {
+        "name": "Smritea Blog",
+        "url": "https://blog.smritea.ai/rss.xml",
+        "allowed_hosts": ["blog.smritea.ai"],
+        "priority": 0
+      },
+      {
+        "name": "DEV",
+        "url": "https://dev.to/feed/tushar_bytonomics",
+        "allowed_hosts": ["dev.to"],
+        "priority": 1
+      }
+    ]
+  }
+}

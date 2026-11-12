@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>DEV Community</title>
+    <item>
+      <title>Let us talk about caching (Part&#160;1)</title>
+      <link>https://dev.to/tushar_bytonomics/let-us-talk-about-caching-29f7?utm_source=rss</link>
+      <pubDate>Thu, 20 Aug 2026 15:40:36 +0000</pubDate>
+    </item>
+    <item>
+      <title>Building [safe] profile automation</title>
+      <link>https://dev.to/tushar_bytonomics/profile-automation</link>
+      <pubDate>Wed, 04 Nov 2026 06:30:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

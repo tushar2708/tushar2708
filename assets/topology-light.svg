@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+<title id="title">Tushar Dwivedi systems topology</title>
+<desc id="desc">A layered map from Tushar Dwivedi through SmrutAI, Bytonomics, and open source to six public projects.</desc>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }</style>
+<defs>
+<marker id="arrow-light" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#8c959f"/>
+</marker>
+</defs>
+<rect x="322" y="20" width="608" height="172" rx="28" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<rect x="322" y="206" width="608" height="150" rx="28" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<rect x="322" y="370" width="608" height="138" rx="28" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1"/>
+<path d="M 256 270 C 294 270, 300 98, 356 98" fill="none" stroke="#8c959f" stroke-width="2" marker-end="url(#arrow-light)"/>
+<path d="M 256 270 C 300 270, 312 271, 356 271" fill="none" stroke="#8c959f" stroke-width="2" marker-end="url(#arrow-light)"/>
+<path d="M 256 270 C 294 270, 300 433, 356 433" fill="none" stroke="#8c959f" stroke-width="2" marker-end="url(#arrow-light)"/>
+<rect x="264" y="151" width="68" height="22" rx="11" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="298" y="166" fill="#59636e" font-size="12" font-weight="600" text-anchor="middle">founded</text>
+<rect x="270" y="244" width="58" height="22" rx="11" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="299" y="259" fill="#59636e" font-size="12" font-weight="600" text-anchor="middle">builds</text>
+<rect x="260" y="348" width="76" height="22" rx="11" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="298" y="363" fill="#59636e" font-size="12" font-weight="600" text-anchor="middle">maintains</text>
+<path d="M 566 98 C 610 98, 610 58, 656 58" fill="none" stroke="#087f8c" stroke-width="2"/>
+<path d="M 566 98 C 610 98, 610 111, 656 111" fill="none" stroke="#087f8c" stroke-width="2"/>
+<path d="M 566 98 C 610 98, 610 164, 656 164" fill="none" stroke="#087f8c" stroke-width="2"/>
+<path d="M 566 271 C 610 271, 610 245, 656 245" fill="none" stroke="#9a6700" stroke-width="2"/>
+<path d="M 566 271 C 610 271, 610 314, 656 314" fill="none" stroke="#9a6700" stroke-width="2"/>
+<path d="M 566 433 C 610 433, 610 439, 656 439" fill="none" stroke="#8250df" stroke-width="2"/>
+<rect x="30" y="220" width="226" height="100" rx="24" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+<circle cx="58" cy="249" r="8" fill="#1f2328"/>
+<text x="78" y="256" fill="#1f2328" font-size="22" font-weight="750" text-anchor="start">Tushar Dwivedi</text>
+<text x="58" y="290" fill="#59636e" font-size="15" font-weight="400" text-anchor="start">founder · staff engineer</text>
+<rect x="356" y="60" width="210" height="76" rx="18" fill="#ffffff" stroke="#087f8c" stroke-width="2"/>
+<circle cx="380" cy="85" r="7" fill="#087f8c"/>
+<text x="398" y="91" fill="#1f2328" font-size="21" font-weight="700" text-anchor="start">SmrutAI</text>
+<text x="380" y="115" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">AI memory infrastructure</text>
+<rect x="356" y="233" width="210" height="76" rx="18" fill="#ffffff" stroke="#9a6700" stroke-width="2"/>
+<circle cx="380" cy="258" r="7" fill="#9a6700"/>
+<text x="398" y="264" fill="#1f2328" font-size="21" font-weight="700" text-anchor="start">Bytonomics</text>
+<text x="380" y="288" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">systems &amp; developer tools</text>
+<rect x="356" y="395" width="210" height="76" rx="18" fill="#ffffff" stroke="#8250df" stroke-width="2"/>
+<circle cx="380" cy="420" r="7" fill="#8250df"/>
+<text x="398" y="426" fill="#1f2328" font-size="21" font-weight="700" text-anchor="start">Open source</text>
+<text x="380" y="450" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">personal workbench</text>
+<circle cx="666" cy="58" r="10" fill="#ffffff" stroke="#087f8c" stroke-width="4"/>
+<text x="694" y="56" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">smritea-sdk</text>
+<text x="694" y="76" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">five-language memory SDK</text>
+<circle cx="666" cy="111" r="10" fill="#ffffff" stroke="#087f8c" stroke-width="4"/>
+<text x="694" y="109" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">pedantigo</text>
+<text x="694" y="129" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">validation &amp; schema</text>
+<circle cx="666" cy="164" r="10" fill="#ffffff" stroke="#087f8c" stroke-width="4"/>
+<text x="694" y="162" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">databridge</text>
+<text x="694" y="182" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">incremental ingestion</text>
+<circle cx="666" cy="245" r="10" fill="#ffffff" stroke="#9a6700" stroke-width="4"/>
+<text x="694" y="243" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">smartcache</text>
+<text x="694" y="263" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">production cache semantics</text>
+<circle cx="666" cy="314" r="10" fill="#ffffff" stroke="#9a6700" stroke-width="4"/>
+<text x="694" y="312" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">cld-gateway</text>
+<text x="694" y="332" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">conversation-aware proxy</text>
+<circle cx="666" cy="439" r="10" fill="#ffffff" stroke="#8250df" stroke-width="4"/>
+<text x="694" y="437" fill="#1f2328" font-size="19" font-weight="650" text-anchor="start">claude-assets</text>
+<text x="694" y="457" fill="#59636e" font-size="13" font-weight="400" text-anchor="start">portable agent workflows</text>
+<text x="930" y="522" fill="#59636e" font-size="12" font-weight="400" text-anchor="end">public work, grouped by where it ships</text>
+</svg>

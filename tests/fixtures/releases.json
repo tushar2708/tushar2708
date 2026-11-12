@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Pedantigo 2.0",
+    "tag_name": "v2.0.0",
+    "html_url": "https://github.com/SmrutAI/pedantigo/releases/tag/v2.0.0",
+    "published_at": "2026-11-03T09:15:00Z",
+    "draft": false,
+    "prerelease": false
+  },
+  {
+    "name": "draft build",
+    "tag_name": "v3.0.0-draft",
+    "html_url": "https://github.com/SmrutAI/pedantigo/releases/tag/v3.0.0-draft",
+    "published_at": "2026-11-10T09:15:00Z",
+    "draft": true,
+    "prerelease": false
+  },
+  {
+    "name": "release candidate",
+    "tag_name": "v2.1.0-rc1",
+    "html_url": "https://github.com/SmrutAI/pedantigo/releases/tag/v2.1.0-rc1",
+    "published_at": "2026-11-08T09:15:00Z",
+    "draft": false,
+    "prerelease": true
+  },
+  {
+    "name": "Pedantigo 1.9",
+    "tag_name": "v1.9.0",
+    "html_url": "https://github.com/SmrutAI/pedantigo/releases/tag/v1.9.0",
+    "published_at": "2026-10-14T12:00:00Z",
+    "draft": false,
+    "prerelease": false
+  },
+  {
+    "name": "unsafe",
+    "tag_name": "bad",
+    "html_url": "http://example.com/not-a-release",
+    "published_at": "2026-11-11T09:15:00Z",
+    "draft": false,
+    "prerelease": false
+  }
+]
