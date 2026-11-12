@@ -1,64 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
-<title id="title">Tushar Dwivedi systems topology</title>
-<desc id="desc">A layered map from Tushar Dwivedi through SmrutAI, Bytonomics, and open source to six public projects.</desc>
-<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }</style>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+<title id="title">Tushar Dwivedi public work graph</title>
+<desc id="desc">A compact graph ledger connecting Tushar Dwivedi to AI memory, runtime systems, developer tooling, and six public repositories.</desc>
+<style>
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+</style>
 <defs>
+<pattern id="grid-dark" width="24" height="24" patternUnits="userSpaceOnUse">
+<circle cx="1" cy="1" r="0.8" fill="#30363d"/>
+</pattern>
 <marker id="arrow-dark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
 <path d="M 0 0 L 10 5 L 0 10 z" fill="#6e7681"/>
 </marker>
 </defs>
-<rect x="322" y="20" width="608" height="172" rx="28" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
-<rect x="322" y="206" width="608" height="150" rx="28" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
-<rect x="322" y="370" width="608" height="138" rx="28" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
-<path d="M 256 270 C 294 270, 300 98, 356 98" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<path d="M 256 270 C 300 270, 312 271, 356 271" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<path d="M 256 270 C 294 270, 300 433, 356 433" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<rect x="264" y="151" width="68" height="22" rx="11" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<text x="298" y="166" fill="#8b949e" font-size="12" font-weight="600" text-anchor="middle">founded</text>
-<rect x="270" y="244" width="58" height="22" rx="11" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<text x="299" y="259" fill="#8b949e" font-size="12" font-weight="600" text-anchor="middle">builds</text>
-<rect x="260" y="348" width="76" height="22" rx="11" fill="#161b22" stroke="#30363d" stroke-width="1"/>
-<text x="298" y="363" fill="#8b949e" font-size="12" font-weight="600" text-anchor="middle">maintains</text>
-<path d="M 566 98 C 610 98, 610 58, 656 58" fill="none" stroke="#56d4dd" stroke-width="2"/>
-<path d="M 566 98 C 610 98, 610 111, 656 111" fill="none" stroke="#56d4dd" stroke-width="2"/>
-<path d="M 566 98 C 610 98, 610 164, 656 164" fill="none" stroke="#56d4dd" stroke-width="2"/>
-<path d="M 566 271 C 610 271, 610 245, 656 245" fill="none" stroke="#e3b341" stroke-width="2"/>
-<path d="M 566 271 C 610 271, 610 314, 656 314" fill="none" stroke="#e3b341" stroke-width="2"/>
-<path d="M 566 433 C 610 433, 610 439, 656 439" fill="none" stroke="#bc8cff" stroke-width="2"/>
-<rect x="30" y="220" width="226" height="100" rx="24" fill="#161b22" stroke="#f0f6fc" stroke-width="2"/>
-<circle cx="58" cy="249" r="8" fill="#f0f6fc"/>
-<text x="78" y="256" fill="#f0f6fc" font-size="22" font-weight="750" text-anchor="start">Tushar Dwivedi</text>
-<text x="58" y="290" fill="#8b949e" font-size="15" font-weight="400" text-anchor="start">founder · staff engineer</text>
-<rect x="356" y="60" width="210" height="76" rx="18" fill="#161b22" stroke="#56d4dd" stroke-width="2"/>
-<circle cx="380" cy="85" r="7" fill="#56d4dd"/>
-<text x="398" y="91" fill="#f0f6fc" font-size="21" font-weight="700" text-anchor="start">SmrutAI</text>
-<text x="380" y="115" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">AI memory infrastructure</text>
-<rect x="356" y="233" width="210" height="76" rx="18" fill="#161b22" stroke="#e3b341" stroke-width="2"/>
-<circle cx="380" cy="258" r="7" fill="#e3b341"/>
-<text x="398" y="264" fill="#f0f6fc" font-size="21" font-weight="700" text-anchor="start">Bytonomics</text>
-<text x="380" y="288" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">systems &amp; developer tools</text>
-<rect x="356" y="395" width="210" height="76" rx="18" fill="#161b22" stroke="#bc8cff" stroke-width="2"/>
-<circle cx="380" cy="420" r="7" fill="#bc8cff"/>
-<text x="398" y="426" fill="#f0f6fc" font-size="21" font-weight="700" text-anchor="start">Open source</text>
-<text x="380" y="450" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">personal workbench</text>
-<circle cx="666" cy="58" r="10" fill="#161b22" stroke="#56d4dd" stroke-width="4"/>
-<text x="694" y="56" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">smritea-sdk</text>
-<text x="694" y="76" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">five-language memory SDK</text>
-<circle cx="666" cy="111" r="10" fill="#161b22" stroke="#56d4dd" stroke-width="4"/>
-<text x="694" y="109" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">pedantigo</text>
-<text x="694" y="129" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">validation &amp; schema</text>
-<circle cx="666" cy="164" r="10" fill="#161b22" stroke="#56d4dd" stroke-width="4"/>
-<text x="694" y="162" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">databridge</text>
-<text x="694" y="182" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">incremental ingestion</text>
-<circle cx="666" cy="245" r="10" fill="#161b22" stroke="#e3b341" stroke-width="4"/>
-<text x="694" y="243" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">smartcache</text>
-<text x="694" y="263" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">production cache semantics</text>
-<circle cx="666" cy="314" r="10" fill="#161b22" stroke="#e3b341" stroke-width="4"/>
-<text x="694" y="312" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">cld-gateway</text>
-<text x="694" y="332" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">conversation-aware proxy</text>
-<circle cx="666" cy="439" r="10" fill="#161b22" stroke="#bc8cff" stroke-width="4"/>
-<text x="694" y="437" fill="#f0f6fc" font-size="19" font-weight="650" text-anchor="start">claude-assets</text>
-<text x="694" y="457" fill="#8b949e" font-size="13" font-weight="400" text-anchor="start">portable agent workflows</text>
-<text x="930" y="522" fill="#8b949e" font-size="12" font-weight="400" text-anchor="end">public work, grouped by where it ships</text>
+<rect width="960" height="360" fill="url(#grid-dark)" opacity="0.55"/>
+<text class="mono" x="24" y="28" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">work graph</text>
+<text class="mono" x="936" y="28" fill="#8b949e" font-size="12" font-weight="400" text-anchor="end">public systems / current map</text>
+<circle cx="122" cy="180" r="46" fill="#0d1117" stroke="#f0f6fc" stroke-width="2.5"/>
+<circle cx="122" cy="180" r="6" fill="#f0f6fc"/>
+<text class="sans" x="122" y="247" fill="#f0f6fc" font-size="20" font-weight="750" text-anchor="middle">Tushar Dwivedi</text>
+<text class="mono" x="122" y="267" fill="#8b949e" font-size="12" font-weight="400" text-anchor="middle">builder node</text>
+<path d="M 168 180 C 214 180 224 78 286 78" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
+<path d="M 168 180 C 214 180 224 180 286 180" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
+<path d="M 168 180 C 214 180 224 282 286 282" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
+<rect x="190" y="96" width="70" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
+<text class="mono" x="225" y="111" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">building</text>
+<rect x="194" y="168" width="60" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
+<text class="mono" x="224" y="183" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">builds</text>
+<rect x="184" y="242" width="80" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
+<text class="mono" x="224" y="257" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">maintains</text>
+<path d="M 326 78 H 928" stroke="#56d4dd" stroke-width="1.8" fill="none"/>
+<path d="M 326 180 H 928" stroke="#e3b341" stroke-width="1.8" fill="none"/>
+<path d="M 326 282 H 928" stroke="#bc8cff" stroke-width="1.8" fill="none"/>
+<circle cx="304" cy="78" r="18" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
+<circle cx="304" cy="78" r="5" fill="#56d4dd"/>
+<text class="sans" x="336" y="76" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">AI memory</text>
+<text class="mono" x="336" y="95" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">SmrutAI</text>
+<circle cx="304" cy="180" r="18" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
+<circle cx="304" cy="180" r="5" fill="#e3b341"/>
+<text class="sans" x="336" y="178" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">runtime systems</text>
+<text class="mono" x="336" y="197" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">Bytonomics</text>
+<circle cx="304" cy="282" r="18" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
+<circle cx="304" cy="282" r="5" fill="#bc8cff"/>
+<text class="sans" x="336" y="280" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">developer tooling</text>
+<text class="mono" x="336" y="299" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">open source</text>
+<circle cx="570" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
+<circle cx="570" cy="78" r="3" fill="#56d4dd"/>
+<text class="sans" x="570" y="56" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">smritea-sdk</text>
+<circle cx="714" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
+<circle cx="714" cy="78" r="3" fill="#56d4dd"/>
+<text class="sans" x="714" y="105" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">pedantigo</text>
+<circle cx="850" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
+<circle cx="850" cy="78" r="3" fill="#56d4dd"/>
+<text class="sans" x="850" y="56" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">databridge</text>
+<circle cx="650" cy="180" r="8" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
+<circle cx="650" cy="180" r="3" fill="#e3b341"/>
+<text class="sans" x="650" y="158" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">smartcache</text>
+<circle cx="830" cy="180" r="8" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
+<circle cx="830" cy="180" r="3" fill="#e3b341"/>
+<text class="sans" x="830" y="207" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">cld-gateway</text>
+<circle cx="760" cy="282" r="8" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
+<circle cx="760" cy="282" r="3" fill="#bc8cff"/>
+<text class="sans" x="760" y="260" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">claude-assets</text>
+<circle cx="928" cy="78" r="3" fill="#56d4dd"/>
+<circle cx="928" cy="180" r="3" fill="#e3b341"/>
+<circle cx="928" cy="282" r="3" fill="#bc8cff"/>
+<line x1="24" y1="332" x2="936" y2="332" stroke="#30363d"/>
+<circle cx="31" cy="347" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="2"/>
+<text class="mono" x="44" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="start">workspace</text>
+<circle cx="132" cy="347" r="4" fill="#f0f6fc"/>
+<text class="mono" x="144" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="start">repository</text>
+<text class="mono" x="936" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="end">relationships are semantic, not decorative</text>
 </svg>

@@ -266,11 +266,22 @@ def dedupe_articles(articles: Iterable[Article]) -> list[Article]:
 
 
 def render_releases(releases: Iterable[Release], limit: int) -> str:
-    selected = sorted(releases, key=lambda item: item.published, reverse=True)[:limit]
+    newest_by_repository: dict[str, Release] = {}
+    for release in releases:
+        key = release.repository.casefold()
+        current = newest_by_repository.get(key)
+        if current is None or release.published > current.published:
+            newest_by_repository[key] = release
+
+    selected = sorted(
+        newest_by_repository.values(),
+        key=lambda item: item.published,
+        reverse=True,
+    )[:limit]
     if not selected:
         return "_No published releases yet._"
     return "\n".join(
-        f"- [{sanitize_text(item.repository)} — {sanitize_text(item.label)}]({item.url}) "
+        f"- **[{sanitize_text(item.repository)} — {sanitize_text(item.label)}]({item.url})** "
         f"<sub>{item.published.date().isoformat()}</sub>"
         for item in selected
     )
@@ -281,7 +292,7 @@ def render_articles(articles: Iterable[Article], limit: int) -> str:
     if not selected:
         return "_No articles published yet._"
     return "\n".join(
-        f"- [{sanitize_text(item.title)}]({item.url}) "
+        f"- **[{sanitize_text(item.title)}]({item.url})** "
         f"<sub>{sanitize_text(item.source)} · {item.published.date().isoformat()}</sub>"
         for item in selected
     )

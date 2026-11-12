@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the light and dark systems-topology assets for the profile README."""
+"""Render the light and dark graph-ledger assets for the profile README."""
 
 from __future__ import annotations
 
@@ -18,9 +18,9 @@ class Theme:
     text: str
     muted: str
     surface: str
-    surface_subtle: str
     border: str
     edge: str
+    grid: str
     memory: str
     runtime: str
     tooling: str
@@ -32,9 +32,9 @@ THEMES = (
         text="#1f2328",
         muted="#59636e",
         surface="#ffffff",
-        surface_subtle="#f6f8fa",
         border="#d0d7de",
         edge="#8c959f",
+        grid="#d8dee4",
         memory="#087f8c",
         runtime="#9a6700",
         tooling="#8250df",
@@ -43,10 +43,10 @@ THEMES = (
         name="dark",
         text="#f0f6fc",
         muted="#8b949e",
-        surface="#161b22",
-        surface_subtle="#0d1117",
+        surface="#0d1117",
         border="#30363d",
         edge="#6e7681",
+        grid="#30363d",
         memory="#56d4dd",
         runtime="#e3b341",
         tooling="#bc8cff",
@@ -63,185 +63,138 @@ def _text(
     fill: str,
     weight: int = 400,
     anchor: str = "start",
+    family: str = "sans",
 ) -> str:
+    css_class = "mono" if family == "mono" else "sans"
     return (
-        f'<text x="{x}" y="{y}" fill="{fill}" font-size="{size}" '
-        f'font-weight="{weight}" text-anchor="{anchor}">{html.escape(value)}</text>'
+        f'<text class="{css_class}" x="{x}" y="{y}" fill="{fill}" '
+        f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">'
+        f'{html.escape(value)}</text>'
     )
 
 
-def _project_node(
-    *,
-    x: int,
-    y: int,
-    title: str,
-    description: str,
-    accent: str,
-    theme: Theme,
-) -> str:
-    return "\n".join(
-        (
-            f'<circle cx="{x}" cy="{y}" r="10" fill="{theme.surface}" '
-            f'stroke="{accent}" stroke-width="4"/>',
-            _text(title, x + 28, y - 2, size=19, fill=theme.text, weight=650),
-            _text(description, x + 28, y + 18, size=13, fill=theme.muted),
-        )
-    )
-
-
-def _org_node(
-    *,
-    x: int,
-    y: int,
-    title: str,
-    subtitle: str,
-    accent: str,
-    theme: Theme,
-) -> str:
-    return "\n".join(
-        (
-            f'<rect x="{x}" y="{y}" width="210" height="76" rx="18" '
-            f'fill="{theme.surface}" stroke="{accent}" stroke-width="2"/>',
-            f'<circle cx="{x + 24}" cy="{y + 25}" r="7" fill="{accent}"/>',
-            _text(title, x + 42, y + 31, size=21, fill=theme.text, weight=700),
-            _text(subtitle, x + 24, y + 55, size=13, fill=theme.muted),
-        )
-    )
-
-
-def _relationship_label(*, value: str, x: int, y: int, width: int, theme: Theme) -> str:
+def _relation(value: str, x: int, y: int, width: int, theme: Theme) -> str:
     return "\n".join(
         (
             f'<rect x="{x}" y="{y}" width="{width}" height="22" rx="11" '
-            f'fill="{theme.surface}" stroke="{theme.border}" stroke-width="1"/>',
+            f'fill="{theme.surface}" stroke="{theme.border}"/>',
             _text(
                 value,
                 x + width // 2,
                 y + 15,
-                size=12,
+                size=11,
                 fill=theme.muted,
                 weight=600,
                 anchor="middle",
+                family="mono",
             ),
         )
     )
 
 
+def _workspace(
+    *,
+    x: int,
+    y: int,
+    title: str,
+    owner: str,
+    accent: str,
+    theme: Theme,
+) -> str:
+    return "\n".join(
+        (
+            f'<circle cx="{x}" cy="{y}" r="18" fill="{theme.surface}" '
+            f'stroke="{accent}" stroke-width="3"/>',
+            f'<circle cx="{x}" cy="{y}" r="5" fill="{accent}"/>',
+            _text(title, x + 32, y - 2, size=20, fill=theme.text, weight=700),
+            _text(owner, x + 32, y + 17, size=12, fill=theme.muted, family="mono"),
+        )
+    )
+
+
+def _repository(
+    *,
+    x: int,
+    y: int,
+    label: str,
+    label_y: int,
+    accent: str,
+    theme: Theme,
+) -> str:
+    return "\n".join(
+        (
+            f'<circle cx="{x}" cy="{y}" r="8" fill="{theme.surface}" '
+            f'stroke="{accent}" stroke-width="3"/>',
+            f'<circle cx="{x}" cy="{y}" r="3" fill="{accent}"/>',
+            _text(label, x, label_y, size=14, fill=theme.text, weight=650, anchor="middle"),
+        )
+    )
+
+
 def render_svg(theme: Theme) -> str:
-    marker_id = f"arrow-{theme.name}"
+    arrow = f"arrow-{theme.name}"
+    grid = f"grid-{theme.name}"
     parts = [
         '<?xml version="1.0" encoding="UTF-8"?>',
-        '<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" '
-        'viewBox="0 0 960 540" role="img" aria-labelledby="title desc">',
-        '<title id="title">Tushar Dwivedi systems topology</title>',
-        '<desc id="desc">A layered map from Tushar Dwivedi through SmrutAI, '
-        'Bytonomics, and open source to six public projects.</desc>',
-        '<style>text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }</style>',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" '
+        'viewBox="0 0 960 360" role="img" aria-labelledby="title desc">',
+        '<title id="title">Tushar Dwivedi public work graph</title>',
+        '<desc id="desc">A compact graph ledger connecting Tushar Dwivedi to '
+        'AI memory, runtime systems, developer tooling, and six public repositories.</desc>',
+        '<style>',
+        '.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }',
+        '.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }',
+        '</style>',
         '<defs>',
-        f'<marker id="{marker_id}" viewBox="0 0 10 10" refX="8" refY="5" '
+        f'<pattern id="{grid}" width="24" height="24" patternUnits="userSpaceOnUse">',
+        f'<circle cx="1" cy="1" r="0.8" fill="{theme.grid}"/>',
+        '</pattern>',
+        f'<marker id="{arrow}" viewBox="0 0 10 10" refX="8" refY="5" '
         'markerWidth="5" markerHeight="5" orient="auto-start-reverse">',
         f'<path d="M 0 0 L 10 5 L 0 10 z" fill="{theme.edge}"/>',
         '</marker>',
         '</defs>',
-        f'<rect x="322" y="20" width="608" height="172" rx="28" fill="{theme.surface_subtle}" '
-        f'stroke="{theme.border}" stroke-width="1"/>',
-        f'<rect x="322" y="206" width="608" height="150" rx="28" fill="{theme.surface_subtle}" '
-        f'stroke="{theme.border}" stroke-width="1"/>',
-        f'<rect x="322" y="370" width="608" height="138" rx="28" fill="{theme.surface_subtle}" '
-        f'stroke="{theme.border}" stroke-width="1"/>',
-        f'<path d="M 256 270 C 294 270, 300 98, 356 98" fill="none" stroke="{theme.edge}" '
-        f'stroke-width="2" marker-end="url(#{marker_id})"/>',
-        f'<path d="M 256 270 C 300 270, 312 271, 356 271" fill="none" stroke="{theme.edge}" '
-        f'stroke-width="2" marker-end="url(#{marker_id})"/>',
-        f'<path d="M 256 270 C 294 270, 300 433, 356 433" fill="none" stroke="{theme.edge}" '
-        f'stroke-width="2" marker-end="url(#{marker_id})"/>',
-        _relationship_label(value="founded", x=264, y=151, width=68, theme=theme),
-        _relationship_label(value="builds", x=270, y=244, width=58, theme=theme),
-        _relationship_label(value="maintains", x=260, y=348, width=76, theme=theme),
-        f'<path d="M 566 98 C 610 98, 610 58, 656 58" fill="none" stroke="{theme.memory}" stroke-width="2"/>',
-        f'<path d="M 566 98 C 610 98, 610 111, 656 111" fill="none" stroke="{theme.memory}" stroke-width="2"/>',
-        f'<path d="M 566 98 C 610 98, 610 164, 656 164" fill="none" stroke="{theme.memory}" stroke-width="2"/>',
-        f'<path d="M 566 271 C 610 271, 610 245, 656 245" fill="none" stroke="{theme.runtime}" stroke-width="2"/>',
-        f'<path d="M 566 271 C 610 271, 610 314, 656 314" fill="none" stroke="{theme.runtime}" stroke-width="2"/>',
-        f'<path d="M 566 433 C 610 433, 610 439, 656 439" fill="none" stroke="{theme.tooling}" stroke-width="2"/>',
-        f'<rect x="30" y="220" width="226" height="100" rx="24" fill="{theme.surface}" '
-        f'stroke="{theme.text}" stroke-width="2"/>',
-        f'<circle cx="58" cy="249" r="8" fill="{theme.text}"/>',
-        _text("Tushar Dwivedi", 78, 256, size=22, fill=theme.text, weight=750),
-        _text("founder · staff engineer", 58, 290, size=15, fill=theme.muted),
-        _org_node(
-            x=356,
-            y=60,
-            title="SmrutAI",
-            subtitle="AI memory infrastructure",
-            accent=theme.memory,
-            theme=theme,
-        ),
-        _org_node(
-            x=356,
-            y=233,
-            title="Bytonomics",
-            subtitle="systems & developer tools",
-            accent=theme.runtime,
-            theme=theme,
-        ),
-        _org_node(
-            x=356,
-            y=395,
-            title="Open source",
-            subtitle="personal workbench",
-            accent=theme.tooling,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=58,
-            title="smritea-sdk",
-            description="five-language memory SDK",
-            accent=theme.memory,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=111,
-            title="pedantigo",
-            description="validation & schema",
-            accent=theme.memory,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=164,
-            title="databridge",
-            description="incremental ingestion",
-            accent=theme.memory,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=245,
-            title="smartcache",
-            description="production cache semantics",
-            accent=theme.runtime,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=314,
-            title="cld-gateway",
-            description="conversation-aware proxy",
-            accent=theme.runtime,
-            theme=theme,
-        ),
-        _project_node(
-            x=666,
-            y=439,
-            title="claude-assets",
-            description="portable agent workflows",
-            accent=theme.tooling,
-            theme=theme,
-        ),
-        _text("public work, grouped by where it ships", 930, 522, size=12, fill=theme.muted, anchor="end"),
+        f'<rect width="960" height="360" fill="url(#{grid})" opacity="0.55"/>',
+        _text("work graph", 24, 28, size=12, fill=theme.muted, family="mono"),
+        _text("public systems / current map", 936, 28, size=12, fill=theme.muted, anchor="end", family="mono"),
+        # Identity node and its three semantic relationships.
+        f'<circle cx="122" cy="180" r="46" fill="{theme.surface}" '
+        f'stroke="{theme.text}" stroke-width="2.5"/>',
+        f'<circle cx="122" cy="180" r="6" fill="{theme.text}"/>',
+        _text("Tushar Dwivedi", 122, 247, size=20, fill=theme.text, weight=750, anchor="middle"),
+        _text("builder node", 122, 267, size=12, fill=theme.muted, anchor="middle", family="mono"),
+        f'<path d="M 168 180 C 214 180 224 78 286 78" fill="none" stroke="{theme.edge}" '
+        f'stroke-width="2" marker-end="url(#{arrow})"/>',
+        f'<path d="M 168 180 C 214 180 224 180 286 180" fill="none" stroke="{theme.edge}" '
+        f'stroke-width="2" marker-end="url(#{arrow})"/>',
+        f'<path d="M 168 180 C 214 180 224 282 286 282" fill="none" stroke="{theme.edge}" '
+        f'stroke-width="2" marker-end="url(#{arrow})"/>',
+        _relation("building", 190, 96, 70, theme),
+        _relation("builds", 194, 168, 60, theme),
+        _relation("maintains", 184, 242, 80, theme),
+        # Open rails: the project names stay on the graph, while details live in Markdown.
+        f'<path d="M 326 78 H 928" stroke="{theme.memory}" stroke-width="1.8" fill="none"/>',
+        f'<path d="M 326 180 H 928" stroke="{theme.runtime}" stroke-width="1.8" fill="none"/>',
+        f'<path d="M 326 282 H 928" stroke="{theme.tooling}" stroke-width="1.8" fill="none"/>',
+        _workspace(x=304, y=78, title="AI memory", owner="SmrutAI", accent=theme.memory, theme=theme),
+        _workspace(x=304, y=180, title="runtime systems", owner="Bytonomics", accent=theme.runtime, theme=theme),
+        _workspace(x=304, y=282, title="developer tooling", owner="open source", accent=theme.tooling, theme=theme),
+        _repository(x=570, y=78, label="smritea-sdk", label_y=56, accent=theme.memory, theme=theme),
+        _repository(x=714, y=78, label="pedantigo", label_y=105, accent=theme.memory, theme=theme),
+        _repository(x=850, y=78, label="databridge", label_y=56, accent=theme.memory, theme=theme),
+        _repository(x=650, y=180, label="smartcache", label_y=158, accent=theme.runtime, theme=theme),
+        _repository(x=830, y=180, label="cld-gateway", label_y=207, accent=theme.runtime, theme=theme),
+        _repository(x=760, y=282, label="claude-assets", label_y=260, accent=theme.tooling, theme=theme),
+        f'<circle cx="928" cy="78" r="3" fill="{theme.memory}"/>',
+        f'<circle cx="928" cy="180" r="3" fill="{theme.runtime}"/>',
+        f'<circle cx="928" cy="282" r="3" fill="{theme.tooling}"/>',
+        # Compact legend doubles as a visual baseline.
+        f'<line x1="24" y1="332" x2="936" y2="332" stroke="{theme.border}"/>',
+        f'<circle cx="31" cy="347" r="5" fill="{theme.surface}" stroke="{theme.text}" stroke-width="2"/>',
+        _text("workspace", 44, 351, size=11, fill=theme.muted, family="mono"),
+        f'<circle cx="132" cy="347" r="4" fill="{theme.text}"/>',
+        _text("repository", 144, 351, size=11, fill=theme.muted, family="mono"),
+        _text("relationships are semantic, not decorative", 936, 351, size=11, fill=theme.muted, anchor="end", family="mono"),
         '</svg>',
     ]
     return "\n".join(parts) + "\n"
@@ -249,12 +202,7 @@ def render_svg(theme: Theme) -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=ROOT / "assets",
-        help="Directory for generated SVG assets.",
-    )
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "assets")
     parser.add_argument(
         "--check",
         action="store_true",

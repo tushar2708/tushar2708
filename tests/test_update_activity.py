@@ -56,6 +56,48 @@ class ReleaseTests(unittest.TestCase):
         self.assertIn("org/newer", rendered)
         self.assertNotIn("org/older", rendered)
 
+    def test_render_releases_shows_only_the_newest_release_per_repository(self) -> None:
+        base = dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc)
+        releases = [
+            updater.Release(
+                "Bytonomics/cld-gateway",
+                "v1.1.4",
+                "https://github.com/Bytonomics/cld-gateway/releases/tag/v1.1.4",
+                base + dt.timedelta(days=1),
+            ),
+            updater.Release(
+                "Bytonomics/cld-gateway",
+                "v1.1.5",
+                "https://github.com/Bytonomics/cld-gateway/releases/tag/v1.1.5",
+                base + dt.timedelta(days=3),
+            ),
+            updater.Release(
+                "Bytonomics/smartcache",
+                "v0.4.0",
+                "https://github.com/Bytonomics/smartcache/releases/tag/v0.4.0",
+                base + dt.timedelta(days=2),
+            ),
+            updater.Release(
+                "SmrutAI/pedantigo",
+                "v2.0.0",
+                "https://github.com/SmrutAI/pedantigo/releases/tag/v2.0.0",
+                base,
+            ),
+        ]
+
+        rendered = updater.render_releases(releases, 3)
+
+        self.assertEqual(rendered.count("[Bytonomics/cld-gateway"), 1)
+        self.assertIn("v1.1.5", rendered)
+        self.assertNotIn("v1.1.4", rendered)
+        self.assertIn("Bytonomics/smartcache", rendered)
+        self.assertIn("SmrutAI/pedantigo", rendered)
+        repositories = [
+            line.split(" — ", maxsplit=1)[0].removeprefix("- [")
+            for line in rendered.splitlines()
+        ]
+        self.assertEqual(len(repositories), len(set(repositories)))
+
 
 class FeedTests(unittest.TestCase):
     def setUp(self) -> None:

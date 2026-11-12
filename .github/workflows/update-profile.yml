@@ -1,6 +1,17 @@
 name: Refresh profile activity
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/profile.json"
+      - "scripts/update_activity.py"
+      - "scripts/render_topology.py"
+      - "assets/topology-light.svg"
+      - "assets/topology-dark.svg"
+      - "tests/**"
+      - ".github/workflows/update-profile.yml"
   schedule:
     - cron: "17 4 * * *"
   workflow_dispatch:
@@ -32,6 +43,9 @@ jobs:
             cat /tmp/profile-activity-tests.log
             exit 1
           fi
+
+      - name: Verify generated topology assets
+        run: python scripts/render_topology.py --check
 
       - name: Refresh generated sections
         env:

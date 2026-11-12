@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 import unittest
 import xml.etree.ElementTree as ET
@@ -24,11 +25,11 @@ class TopologyAssetTests(unittest.TestCase):
                 svg = render_topology.render_svg(theme)
                 root = ET.fromstring(svg)
                 self.assertTrue(root.tag.endswith("svg"))
-                self.assertEqual(root.attrib["viewBox"], "0 0 960 540")
+                self.assertEqual(root.attrib["viewBox"], "0 0 960 360")
                 self.assertNotIn("<script", svg)
                 self.assertNotIn("<animate", svg)
-                self.assertNotIn("http://", svg)
-                self.assertNotIn("https://", svg)
+                self.assertIsNone(re.search(r'(?:href|src)="https?://', svg))
+                self.assertNotIn("url(http", svg)
 
     def test_topology_contains_every_public_project(self) -> None:
         svg = render_topology.render_svg(render_topology.THEMES[0])
