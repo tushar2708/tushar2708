@@ -1,8 +1,10 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.svg">
-  <img src="./assets/banner-light.svg" width="100%" alt="Portrait banner for Tushar Dwivedi, founder and hands-on staff engineer.">
-</picture>
+# Tushar Dwivedi
+
+[Website](https://tushardwivedi.com/) ·
+[LinkedIn](https://www.linkedin.com/in/tushar-dwivedi/) ·
+[Bytonomics](https://bytonomics.com/) ·
+[Smritea Blog](https://blog.smritea.ai/) ·
+[DEV](https://dev.to/tushar_bytonomics)
 
 ## GitHub field notes
 
@@ -16,11 +18,36 @@
 
 ## Relationship tree
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/topology-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/topology-light.svg">
-  <img src="./assets/topology-light.svg" width="100%" alt="A theme-first relationship tree connecting Tushar Dwivedi to AI memory, runtime systems, and developer tooling.">
-</picture>
+<table>
+  <tr>
+    <td colspan="3" align="center">
+      <a href="https://github.com/tushar2708"><strong>● Tushar Dwivedi</strong></a><br>
+      <sub>public work / current map</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%"><a href="#ai-memory"><strong>● AI memory</strong></a><br><sub>durable context</sub></td>
+    <td align="center" width="33%"><a href="#utility-libraries"><strong>● Runtime systems</strong></a><br><sub>reliable execution</sub></td>
+    <td align="center" width="33%"><a href="#developer-tooling-i-have-created-to-make-my-life-easier"><strong>● Developer tooling</strong></a><br><sub>agent workflows</sub></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      ↳ <a href="https://github.com/SmrutAI/smritea-sdk"><strong>smritea-sdk</strong></a><br>
+      ↳ <a href="https://github.com/SmrutAI/pedantigo"><strong>pedantigo</strong></a><br>
+      ↳ <a href="https://github.com/SmrutAI/databridge"><strong>databridge</strong></a>
+    </td>
+    <td valign="top">
+      ↳ <a href="https://github.com/Bytonomics/smartcache"><strong>smartcache</strong></a><br>
+      ↳ <a href="https://github.com/tushar2708/conveyor"><strong>conveyor</strong></a>
+    </td>
+    <td valign="top">
+      ↳ <a href="https://github.com/Bytonomics/kangaroo"><strong>kangaroo</strong></a><br>
+      ↳ <a href="https://github.com/Bytonomics/cld-gateway"><strong>cld-gateway</strong></a><br>
+      ↳ <a href="https://github.com/SmrutAI/opencode-migration"><strong>opencode-migration</strong></a><br>
+      ↳ <a href="https://github.com/tushar2708/claude-assets"><strong>claude-assets</strong></a>
+    </td>
+  </tr>
+</table>
 
 ## Find me
 
