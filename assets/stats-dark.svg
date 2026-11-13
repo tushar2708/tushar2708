@@ -23,7 +23,7 @@
 <text class="sans" x="452" y="262" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">71</text>
 <circle cx="62" cy="292" r="5" fill="#ff9bce"/>
 <text class="sans" x="80" y="297" font-size="13" fill="#8b949e">GitHub-attributed additions + deletions</text>
-<text class="sans" x="452" y="297" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">Token required</text>
+<text class="sans" x="452" y="297" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">GitHub stats unavailable</text>
 <circle cx="62" cy="327" r="5" fill="#ffa657"/>
 <text class="sans" x="80" y="332" font-size="13" fill="#8b949e">Repository views · past 14 days (7 maintained repositories)</text>
 <text class="sans" x="452" y="332" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">185</text>
