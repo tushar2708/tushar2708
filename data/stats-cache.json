@@ -1,7 +1,7 @@
 {
-  "contributions": 5086,
+  "contributions": 5088,
   "forks": 19,
-  "generated_at": "2026-11-13T07:03:50Z",
+  "generated_at": "2026-11-13T07:11:00Z",
   "languages": {
     "Astro": 17680,
     "Bicep": 183719,
@@ -34,10 +34,13 @@
     "SuperCollider": 37093,
     "TypeScript": 17538666
   },
+  "lines_changed": 828186,
+  "lines_repositories": 5,
+  "lines_verified_at": "2026-11-13T07:11:00Z",
   "repositories": 71,
   "scope": "Repositories owned by or contributed to by tushar2708",
   "stars": 77,
   "traffic_repositories": 7,
-  "traffic_verified_at": "2026-11-13T07:03:50Z",
+  "traffic_verified_at": "2026-11-13T07:11:00Z",
   "traffic_views": 185
 }
