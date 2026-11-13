@@ -332,23 +332,23 @@ def verified_day(snapshot: dict[str, Any], field: str) -> str | None:
 def render_svg(snapshot: dict[str, Any], theme_name: str, language_limit: int) -> str:
     theme = THEMES[theme_name]
     stats: list[tuple[str, str]] = [
-        ("Stars across owned + contributed repositories", quantity(int(snapshot.get("stars", 0)))),
-        ("Forks across owned + contributed repositories", quantity(int(snapshot.get("forks", 0)))),
+        ("Stars · owned + contributed repos", quantity(int(snapshot.get("stars", 0)))),
+        ("Forks · owned + contributed repos", quantity(int(snapshot.get("forks", 0)))),
         ("All-time GitHub contributions", quantity(int(snapshot.get("contributions", 0)))),
-        ("Repositories with contributions", quantity(int(snapshot.get("repositories", 0)))),
+        ("Repositories in scope", quantity(int(snapshot.get("repositories", 0)))),
     ]
     if isinstance(snapshot.get("lines_changed"), int):
         counted = snapshot.get("lines_repositories")
-        suffix = f" ({counted} repositories)" if isinstance(counted, int) else ""
-        stats.append((f"GitHub-attributed additions + deletions{suffix}", quantity(snapshot["lines_changed"])))
+        suffix = f" · {counted} verified repos" if isinstance(counted, int) else ""
+        stats.append((f"Additions + deletions{suffix}", quantity(snapshot["lines_changed"])))
     else:
-        stats.append(("GitHub-attributed additions + deletions", "GitHub stats unavailable"))
+        stats.append(("Additions + deletions", "GitHub stats unavailable"))
     if isinstance(snapshot.get("traffic_views"), int):
         counted = snapshot.get("traffic_repositories")
-        suffix = f" ({counted} maintained repositories)" if isinstance(counted, int) else ""
-        stats.append((f"Repository views · past 14 days{suffix}", quantity(snapshot["traffic_views"])))
+        suffix = f" · {counted} repos" if isinstance(counted, int) else ""
+        stats.append((f"Views · past 14 days{suffix}", quantity(snapshot["traffic_views"])))
     else:
-        stats.append(("Repository views · past 14 days", "Token required"))
+        stats.append(("Views · past 14 days", "Token required"))
     optional_verifications = [
         ("lines", verified_day(snapshot, "lines_verified_at")),
         ("views", verified_day(snapshot, "traffic_verified_at")),
@@ -374,7 +374,7 @@ def render_svg(snapshot: dict[str, Any], theme_name: str, language_limit: int) -
         parts.extend([
             f'<circle cx="62" cy="{y - 5}" r="5" fill="{swatches[index]}"/>',
             f'<text class="sans" x="80" y="{y}" font-size="13" fill="{theme["muted"]}">{esc(label)}</text>',
-            f'<text class="sans" x="452" y="{y}" font-size="18" font-weight="700" text-anchor="end" fill="{theme["text"]}">{esc(value)}</text>',
+            f'<text class="sans" x="398" y="{y}" font-size="18" font-weight="700" fill="{theme["text"]}">{esc(value)}</text>',
         ])
     parts.extend([
         f'<text class="mono" x="528" y="62" font-size="12" font-weight="650" fill="{theme["muted"]}">REPOSITORY LANGUAGES / FILE SIZE</text>',

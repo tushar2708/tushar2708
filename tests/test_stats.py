@@ -151,9 +151,15 @@ class RenderingTests(unittest.TestCase):
 
         self.assertIn("4,321", rendered)
         self.assertIn("765", rendered)
-        self.assertIn("2 repositories", rendered)
-        self.assertIn("3 maintained repositories", rendered)
+        self.assertIn("2 verified repos", rendered)
+        self.assertIn("3 repos", rendered)
         self.assertIn("protected metrics verified: lines 2026-11-12 · views 2026-11-11", rendered)
+
+    def test_stat_values_use_a_fixed_left_aligned_column(self) -> None:
+        rendered = stats.render_svg(self.snapshot, "light", 8)
+
+        self.assertIn('x="398" y="157" font-size="18" font-weight="700"', rendered)
+        self.assertNotIn('x="452" y="157" font-size="18" font-weight="700" text-anchor="end"', rendered)
 
     def test_check_mode_detects_stale_assets(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

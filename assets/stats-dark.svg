@@ -10,23 +10,23 @@
 <text class="sans" x="56" y="123" font-size="14" fill="#8b949e">Public repositories owned by or contributed to by Tushar</text>
 <line x1="492" y1="54" x2="492" y2="374" stroke="#30363d"/>
 <circle cx="62" cy="152" r="5" fill="#79c0ff"/>
-<text class="sans" x="80" y="157" font-size="13" fill="#8b949e">Stars across owned + contributed repositories</text>
-<text class="sans" x="452" y="157" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">77</text>
+<text class="sans" x="80" y="157" font-size="13" fill="#8b949e">Stars · owned + contributed repos</text>
+<text class="sans" x="398" y="157" font-size="18" font-weight="700" fill="#e6edf3">77</text>
 <circle cx="62" cy="187" r="5" fill="#56d4dd"/>
-<text class="sans" x="80" y="192" font-size="13" fill="#8b949e">Forks across owned + contributed repositories</text>
-<text class="sans" x="452" y="192" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">19</text>
+<text class="sans" x="80" y="192" font-size="13" fill="#8b949e">Forks · owned + contributed repos</text>
+<text class="sans" x="398" y="192" font-size="18" font-weight="700" fill="#e6edf3">19</text>
 <circle cx="62" cy="222" r="5" fill="#e3b341"/>
 <text class="sans" x="80" y="227" font-size="13" fill="#8b949e">All-time GitHub contributions</text>
-<text class="sans" x="452" y="227" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">5,088</text>
+<text class="sans" x="398" y="227" font-size="18" font-weight="700" fill="#e6edf3">5,088</text>
 <circle cx="62" cy="257" r="5" fill="#d2a8ff"/>
-<text class="sans" x="80" y="262" font-size="13" fill="#8b949e">Repositories with contributions</text>
-<text class="sans" x="452" y="262" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">71</text>
+<text class="sans" x="80" y="262" font-size="13" fill="#8b949e">Repositories in scope</text>
+<text class="sans" x="398" y="262" font-size="18" font-weight="700" fill="#e6edf3">71</text>
 <circle cx="62" cy="292" r="5" fill="#ff9bce"/>
-<text class="sans" x="80" y="297" font-size="13" fill="#8b949e">GitHub-attributed additions + deletions (5 repositories)</text>
-<text class="sans" x="452" y="297" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">828,186</text>
+<text class="sans" x="80" y="297" font-size="13" fill="#8b949e">Additions + deletions · 5 verified repos</text>
+<text class="sans" x="398" y="297" font-size="18" font-weight="700" fill="#e6edf3">828,186</text>
 <circle cx="62" cy="327" r="5" fill="#ffa657"/>
-<text class="sans" x="80" y="332" font-size="13" fill="#8b949e">Repository views · past 14 days (7 maintained repositories)</text>
-<text class="sans" x="452" y="332" font-size="18" font-weight="700" text-anchor="end" fill="#e6edf3">185</text>
+<text class="sans" x="80" y="332" font-size="13" fill="#8b949e">Views · past 14 days · 7 repos</text>
+<text class="sans" x="398" y="332" font-size="18" font-weight="700" fill="#e6edf3">185</text>
 <text class="mono" x="528" y="62" font-size="12" font-weight="650" fill="#8b949e">REPOSITORY LANGUAGES / FILE SIZE</text>
 <text class="sans" x="528" y="98" font-size="22" font-weight="700" fill="#e6edf3">Current language mix</text>
 <rect x="528.00" y="122" width="112.08" height="12" rx="4" fill="#79c0ff"/>
