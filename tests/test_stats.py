@@ -70,14 +70,17 @@ class AggregationTests(unittest.TestCase):
         self.assertEqual(rest_get_json.call_count, 2)
 
     @mock.patch("update_stats.rest_get_json")
-    def test_line_and_traffic_totals_do_not_accept_partial_access(self, rest_get_json: mock.Mock) -> None:
+    def test_line_total_marks_its_verified_partial_coverage(self, rest_get_json: mock.Mock) -> None:
         rest_get_json.side_effect = [
             (200, [{"author": {"login": "tushar2708"}, "weeks": [{"a": 3, "d": 1}]}]),
             (403, None),
         ]
 
-        self.assertIsNone(
-            stats.aggregate_contributor_lines("token", ["SmrutAI/pedantigo", "Bytonomics/smartcache"], "tushar2708")
+        self.assertEqual(
+            stats.aggregate_contributor_lines(
+                "token", ["SmrutAI/pedantigo", "Bytonomics/smartcache"], "tushar2708"
+            ),
+            (4, 1),
         )
 
         rest_get_json.side_effect = [
@@ -94,6 +97,12 @@ class AggregationTests(unittest.TestCase):
             stats.aggregate_traffic_views("token", ["SmrutAI/pedantigo", "Bytonomics/smartcache"]),
             (18, 2),
         )
+
+    @mock.patch("update_stats.contributor_lines")
+    def test_line_total_is_unavailable_only_when_no_repository_report_is_verified(self, contributor_lines: mock.Mock) -> None:
+        contributor_lines.return_value = None
+
+        self.assertIsNone(stats.aggregate_contributor_lines("token", ["SmrutAI/pedantigo"], "tushar2708"))
 
 
 class RenderingTests(unittest.TestCase):
@@ -122,10 +131,11 @@ class RenderingTests(unittest.TestCase):
             self.assertIn(value, light)
             self.assertIn(value, dark)
 
-    def test_rendering_marks_metrics_requiring_a_token(self) -> None:
+    def test_rendering_marks_unverified_metrics_without_blaming_the_token(self) -> None:
         rendered = stats.render_svg(self.snapshot, "light", 8)
 
-        self.assertEqual(rendered.count("Token required"), 2)
+        self.assertIn("GitHub stats unavailable", rendered)
+        self.assertEqual(rendered.count("Token required"), 1)
 
     def test_rendering_includes_verified_optional_metrics(self) -> None:
         snapshot = {

@@ -11,6 +11,15 @@
       "Bytonomics/kangaroo",
       "tushar2708/claude-assets"
     ],
+    "line_repositories": [
+      "SmrutAI/pedantigo",
+      "SmrutAI/smritea-sdk",
+      "SmrutAI/databridge",
+      "Bytonomics/smartcache",
+      "Bytonomics/cld-gateway",
+      "Bytonomics/kangaroo",
+      "tushar2708/claude-assets"
+    ],
     "exclude_repositories": []
   },
   "activity": {

@@ -115,16 +115,23 @@ def contributor_lines(token: str, repository: str, username: str, retries: int =
 
 
 def aggregate_contributor_lines(token: str, repositories: Iterable[str], username: str) -> tuple[int, int] | None:
-    """Aggregate only when every repository supplied an attributable report."""
+    """Aggregate attributable reports while making the covered repository count explicit.
+
+    GitHub computes contributor reports asynchronously and can withhold an
+    individual repository's report.  A partial sum is useful only when its
+    exact coverage is displayed; callers render the returned count beside the
+    total.  Returning ``None`` still distinguishes no verified reports from a
+    genuine zero-line result.
+    """
     total = 0
     count = 0
     for repository in repositories:
         lines = contributor_lines(token, repository, username)
         if lines is None:
-            return None
+            continue
         total += lines
         count += 1
-    return total, count
+    return (total, count) if count else None
 
 
 def aggregate_traffic_views(token: str, repositories: Iterable[str]) -> tuple[int, int] | None:
@@ -259,7 +266,8 @@ def fetch_live_snapshot(
         "languages": dict(languages.most_common()),
     }
     repository_names = [str(repository["nameWithOwner"]) for repository in unique]
-    line_stats = aggregate_contributor_lines(token, repository_names, username)
+    line_repositories = config.get("line_repositories", config.get("traffic_repositories", repository_names))
+    line_stats = aggregate_contributor_lines(token, line_repositories, username)
     traffic_stats = aggregate_traffic_views(token, config.get("traffic_repositories", []))
     if line_stats is not None:
         snapshot["lines_changed"], snapshot["lines_repositories"] = line_stats
@@ -334,7 +342,7 @@ def render_svg(snapshot: dict[str, Any], theme_name: str, language_limit: int) -
         suffix = f" ({counted} repositories)" if isinstance(counted, int) else ""
         stats.append((f"GitHub-attributed additions + deletions{suffix}", quantity(snapshot["lines_changed"])))
     else:
-        stats.append(("GitHub-attributed additions + deletions", "Token required"))
+        stats.append(("GitHub-attributed additions + deletions", "GitHub stats unavailable"))
     if isinstance(snapshot.get("traffic_views"), int):
         counted = snapshot.get("traffic_repositories")
         suffix = f" ({counted} maintained repositories)" if isinstance(counted, int) else ""
