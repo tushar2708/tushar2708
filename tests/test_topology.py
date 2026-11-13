@@ -25,7 +25,7 @@ class TopologyAssetTests(unittest.TestCase):
                 svg = render_topology.render_svg(theme)
                 root = ET.fromstring(svg)
                 self.assertTrue(root.tag.endswith("svg"))
-                self.assertEqual(root.attrib["viewBox"], "0 0 960 360")
+                self.assertEqual(root.attrib["viewBox"], "0 0 960 620")
                 self.assertNotIn("<script", svg)
                 self.assertNotIn("<animate", svg)
                 self.assertIsNone(re.search(r'(?:href|src)="https?://', svg))
@@ -38,10 +38,24 @@ class TopologyAssetTests(unittest.TestCase):
             "pedantigo",
             "databridge",
             "smartcache",
+            "conveyor",
+            "kangaroo",
             "cld-gateway",
+            "opencode-migration",
             "claude-assets",
         ):
             self.assertIn(project, svg)
+
+    def test_topology_uses_curved_theme_branches_not_shared_rails(self) -> None:
+        svg = render_topology.render_svg(render_topology.THEMES[0])
+        self.assertGreaterEqual(svg.count(' C '), 15)
+        self.assertNotIn(' H 928', svg)
+        for accent in (
+            render_topology.THEMES[0].memory,
+            render_topology.THEMES[0].runtime,
+            render_topology.THEMES[0].tooling,
+        ):
+            self.assertGreaterEqual(svg.count(f'stroke="{accent}"'), 3)
 
 
 if __name__ == "__main__":

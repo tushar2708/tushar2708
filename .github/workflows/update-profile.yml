@@ -7,7 +7,9 @@ on:
     paths:
       - "data/profile.json"
       - "scripts/update_activity.py"
+      - "scripts/update_stats.py"
       - "scripts/render_topology.py"
+      - "scripts/render_banner.py"
       - "assets/topology-light.svg"
       - "assets/topology-dark.svg"
       - "tests/**"
@@ -45,22 +47,31 @@ jobs:
           fi
 
       - name: Verify generated topology assets
-        run: python scripts/render_topology.py --check
+        shell: bash
+        run: |
+          python scripts/render_topology.py --check
+          python scripts/render_banner.py --check
+          python scripts/update_stats.py --check
 
-      - name: Refresh generated sections
+      - name: Refresh generated activity
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/update_activity.py
 
-      - name: Commit changed activity
+      - name: Refresh aggregate GitHub statistics
+        env:
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+        run: python scripts/update_stats.py --refresh
+
+      - name: Commit changed profile data
         shell: bash
         run: |
-          if git diff --quiet -- README.md; then
-            echo "Profile activity is already current."
+          if git diff --quiet -- README.md data/stats-cache.json assets/stats-light.svg assets/stats-dark.svg; then
+            echo "Profile data is already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "chore(profile): refresh releases and writing"
+          git add README.md data/stats-cache.json assets/stats-light.svg assets/stats-dark.svg
+          git commit -m "chore(profile): refresh activity and statistics"
           git push

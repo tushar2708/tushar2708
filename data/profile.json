@@ -1,4 +1,18 @@
 {
+  "stats": {
+    "username": "tushar2708",
+    "top_language_count": 8,
+    "traffic_repositories": [
+      "SmrutAI/pedantigo",
+      "SmrutAI/smritea-sdk",
+      "SmrutAI/databridge",
+      "Bytonomics/smartcache",
+      "Bytonomics/cld-gateway",
+      "Bytonomics/kangaroo",
+      "tushar2708/claude-assets"
+    ],
+    "exclude_repositories": []
+  },
   "activity": {
     "release_limit": 3,
     "article_limit": 3,

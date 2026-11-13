@@ -1,15 +1,25 @@
-# Tushar Dwivedi
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.svg">
+  <img src="./assets/banner-light.svg" width="100%" alt="Portrait banner for Tushar Dwivedi, founder and hands-on staff engineer.">
+</picture>
 
-### I build systems that remember, recover, and keep moving.
+## GitHub field notes
 
-Founder building [Smritea](https://smritea.ai/) and a hands-on staff engineer across
-distributed systems, AI infrastructure, data platforms, and developer tools.
-I like software that stays understandable after it meets production.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/stats-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/stats-light.svg">
+  <img src="./assets/stats-light.svg" width="100%" alt="GitHub statistics and repository language mix for Tushar Dwivedi.">
+</picture>
+
+<sub>Refreshed daily from GitHub’s API. Metrics requiring organisation-level access remain visibly unavailable until the profile statistics token is configured.</sub>
+
+## Relationship tree
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/topology-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/topology-light.svg">
-  <img src="./assets/topology-light.svg" width="100%" alt="A compact graph connecting Tushar Dwivedi with AI memory, runtime systems, and developer tooling.">
+  <img src="./assets/topology-light.svg" width="100%" alt="A theme-first relationship tree connecting Tushar Dwivedi to AI memory, runtime systems, and developer tooling.">
 </picture>
 
 ## Find me
@@ -25,31 +35,34 @@ I like software that stays understandable after it meets production.
 - **Developer essays in the open** —
   **[DEV Community](https://dev.to/tushar_bytonomics)**
 
-## Selected systems
+## Systems behind the tree
+
+### AI memory
 
 - **Memory APIs across five languages** —
-  **[SmrutAI/smritea-sdk](https://github.com/SmrutAI/smritea-sdk)**, one SDK surface
-  for durable AI memory in Python, TypeScript, Go, Java, and C#.
-
+  **[SmrutAI/smritea-sdk](https://github.com/SmrutAI/smritea-sdk)** gives applications one SDK surface for durable AI memory in Python, TypeScript, Go, Java, and C#.
 - **Typed validation for structured outputs** —
-  **[SmrutAI/pedantigo](https://github.com/SmrutAI/pedantigo)**, with Go validation and
-  JSON Schema generation for APIs, tools, and streamed LLM output.
-
+  **[SmrutAI/pedantigo](https://github.com/SmrutAI/pedantigo)** brings Go validation and JSON Schema generation to APIs, tools, and streamed LLM output.
 - **Incremental pipelines for messy knowledge** —
-  **[SmrutAI/databridge](https://github.com/SmrutAI/databridge)**, with parsing,
-  deduplication, chunking, and embedding across local and cloud sources.
+  **[SmrutAI/databridge](https://github.com/SmrutAI/databridge)** parses, deduplicates, chunks, and embeds data across local and cloud sources.
+
+### Runtime systems
 
 - **Caching with explicit failure semantics** —
-  **[Bytonomics/smartcache](https://github.com/Bytonomics/smartcache)**, with stampede
-  protection, negative caching, telemetry, and pluggable backends for Go.
+  **[Bytonomics/smartcache](https://github.com/Bytonomics/smartcache)** provides stampede protection, negative caching, telemetry, and pluggable Go backends.
+- **Concurrent pipelines with visible flow** —
+  **[tushar2708/conveyor](https://github.com/tushar2708/conveyor)** is a Go pipeline library for coordinated nodes, joints, and execution paths.
 
+### Developer tooling
+
+- **A task board inside Claude Code** —
+  **[Bytonomics/kangaroo](https://github.com/Bytonomics/kangaroo)** turns agent work into a usable, local project board.
 - **Conversation state behind compatible APIs** —
-  **[Bytonomics/cld-gateway](https://github.com/Bytonomics/cld-gateway)**, an
-  Anthropic-compatible gateway for Codex-backed development workflows.
-
+  **[Bytonomics/cld-gateway](https://github.com/Bytonomics/cld-gateway)** is an Anthropic-compatible gateway for Codex-backed development workflows.
+- **Moving agent workflows into OpenCode** —
+  **[SmrutAI/opencode-migration](https://github.com/SmrutAI/opencode-migration)** carries a deliberate migration path for tools, context, and habits.
 - **Portable workflows for coding agents** —
-  **[tushar2708/claude-assets](https://github.com/tushar2708/claude-assets)**, with reusable
-  skills, plugins, and workflows across Claude Code and Codex.
+  **[tushar2708/claude-assets](https://github.com/tushar2708/claude-assets)** packages reusable skills, plugins, and workflows for Claude Code and Codex.
 
 ## Current signals
 
@@ -68,6 +81,6 @@ I like software that stays understandable after it meets production.
 - **[Smritea search methods and rerankers: which to pick](https://blog.smritea.ai/search-methods-and-rerankers)** <sub>Smritea Blog · 2026-10-15</sub>
 <!-- PROFILE:WRITE:END -->
 
-<sub>Generated from published GitHub releases and the Smritea/DEV RSS feeds.
-[Read the updater](./scripts/update_activity.py) ·
+<sub>Generated from published GitHub releases, the Smritea/DEV RSS feeds, and the
+[profile updater](./scripts/update_activity.py). ·
 [View refresh runs](https://github.com/tushar2708/tushar2708/actions/workflows/update-profile.yml)</sub>

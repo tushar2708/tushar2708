@@ -1,75 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="360" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
-<title id="title">Tushar Dwivedi public work graph</title>
-<desc id="desc">A compact graph ledger connecting Tushar Dwivedi to AI memory, runtime systems, developer tooling, and six public repositories.</desc>
-<style>
-.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-</style>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620" role="img" aria-labelledby="title desc">
+<title id="title">Tushar Dwivedi relationship tree</title>
+<desc id="desc">A downward relationship tree linking Tushar Dwivedi to AI memory, runtime systems, and developer tooling projects. Each branch is coloured by engineering theme.</desc>
+<style>.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }</style>
 <defs>
-<pattern id="grid-dark" width="24" height="24" patternUnits="userSpaceOnUse">
-<circle cx="1" cy="1" r="0.8" fill="#30363d"/>
-</pattern>
-<marker id="arrow-dark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-<path d="M 0 0 L 10 5 L 0 10 z" fill="#6e7681"/>
-</marker>
+<pattern id="grid-dark" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.7" fill="#30363d"/></pattern>
+<marker id="arrow-dark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa7b5"/></marker>
 </defs>
-<rect width="960" height="360" fill="url(#grid-dark)" opacity="0.55"/>
-<text class="mono" x="24" y="28" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">work graph</text>
-<text class="mono" x="936" y="28" fill="#8b949e" font-size="12" font-weight="400" text-anchor="end">public systems / current map</text>
-<circle cx="122" cy="180" r="46" fill="#0d1117" stroke="#f0f6fc" stroke-width="2.5"/>
-<circle cx="122" cy="180" r="6" fill="#f0f6fc"/>
-<text class="sans" x="122" y="247" fill="#f0f6fc" font-size="20" font-weight="750" text-anchor="middle">Tushar Dwivedi</text>
-<text class="mono" x="122" y="267" fill="#8b949e" font-size="12" font-weight="400" text-anchor="middle">builder node</text>
-<path d="M 168 180 C 214 180 224 78 286 78" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<path d="M 168 180 C 214 180 224 180 286 180" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<path d="M 168 180 C 214 180 224 282 286 282" fill="none" stroke="#6e7681" stroke-width="2" marker-end="url(#arrow-dark)"/>
-<rect x="190" y="96" width="70" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
-<text class="mono" x="225" y="111" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">building</text>
-<rect x="194" y="168" width="60" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
-<text class="mono" x="224" y="183" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">builds</text>
-<rect x="184" y="242" width="80" height="22" rx="11" fill="#0d1117" stroke="#30363d"/>
-<text class="mono" x="224" y="257" fill="#8b949e" font-size="11" font-weight="600" text-anchor="middle">maintains</text>
-<path d="M 326 78 H 928" stroke="#56d4dd" stroke-width="1.8" fill="none"/>
-<path d="M 326 180 H 928" stroke="#e3b341" stroke-width="1.8" fill="none"/>
-<path d="M 326 282 H 928" stroke="#bc8cff" stroke-width="1.8" fill="none"/>
-<circle cx="304" cy="78" r="18" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
-<circle cx="304" cy="78" r="5" fill="#56d4dd"/>
-<text class="sans" x="336" y="76" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">AI memory</text>
-<text class="mono" x="336" y="95" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">SmrutAI</text>
-<circle cx="304" cy="180" r="18" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
-<circle cx="304" cy="180" r="5" fill="#e3b341"/>
-<text class="sans" x="336" y="178" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">runtime systems</text>
-<text class="mono" x="336" y="197" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">Bytonomics</text>
-<circle cx="304" cy="282" r="18" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
-<circle cx="304" cy="282" r="5" fill="#bc8cff"/>
-<text class="sans" x="336" y="280" fill="#f0f6fc" font-size="20" font-weight="700" text-anchor="start">developer tooling</text>
-<text class="mono" x="336" y="299" fill="#8b949e" font-size="12" font-weight="400" text-anchor="start">open source</text>
-<circle cx="570" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
-<circle cx="570" cy="78" r="3" fill="#56d4dd"/>
-<text class="sans" x="570" y="56" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">smritea-sdk</text>
-<circle cx="714" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
-<circle cx="714" cy="78" r="3" fill="#56d4dd"/>
-<text class="sans" x="714" y="105" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">pedantigo</text>
-<circle cx="850" cy="78" r="8" fill="#0d1117" stroke="#56d4dd" stroke-width="3"/>
-<circle cx="850" cy="78" r="3" fill="#56d4dd"/>
-<text class="sans" x="850" y="56" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">databridge</text>
-<circle cx="650" cy="180" r="8" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
-<circle cx="650" cy="180" r="3" fill="#e3b341"/>
-<text class="sans" x="650" y="158" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">smartcache</text>
-<circle cx="830" cy="180" r="8" fill="#0d1117" stroke="#e3b341" stroke-width="3"/>
-<circle cx="830" cy="180" r="3" fill="#e3b341"/>
-<text class="sans" x="830" y="207" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">cld-gateway</text>
-<circle cx="760" cy="282" r="8" fill="#0d1117" stroke="#bc8cff" stroke-width="3"/>
-<circle cx="760" cy="282" r="3" fill="#bc8cff"/>
-<text class="sans" x="760" y="260" fill="#f0f6fc" font-size="14" font-weight="650" text-anchor="middle">claude-assets</text>
-<circle cx="928" cy="78" r="3" fill="#56d4dd"/>
-<circle cx="928" cy="180" r="3" fill="#e3b341"/>
-<circle cx="928" cy="282" r="3" fill="#bc8cff"/>
-<line x1="24" y1="332" x2="936" y2="332" stroke="#30363d"/>
-<circle cx="31" cy="347" r="5" fill="#0d1117" stroke="#f0f6fc" stroke-width="2"/>
-<text class="mono" x="44" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="start">workspace</text>
-<circle cx="132" cy="347" r="4" fill="#f0f6fc"/>
-<text class="mono" x="144" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="start">repository</text>
-<text class="mono" x="936" y="351" fill="#8b949e" font-size="11" font-weight="400" text-anchor="end">relationships are semantic, not decorative</text>
+<rect width="960" height="620" fill="url(#grid-dark)" opacity="0.58"/>
+<text class="mono" x="28" y="31" fill="#9aa7b5" font-size="12" font-weight="400" text-anchor="start">relationship tree</text>
+<text class="mono" x="932" y="31" fill="#9aa7b5" font-size="12" font-weight="400" text-anchor="end">coloured by engineering theme</text>
+<rect x="360" y="53" width="240" height="66" rx="14" fill="#0d1117" stroke="#e6edf3" stroke-width="2.5"/>
+<circle cx="389" cy="83" r="7" fill="#e6edf3"/>
+<text class="sans" x="411" y="80" fill="#e6edf3" font-size="19" font-weight="750" text-anchor="start">Tushar Dwivedi</text>
+<text class="mono" x="411" y="102" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">public work / current map</text>
+<path d="M 419 119 C 380 142, 250 139, 204 170" fill="none" stroke="#57c5cf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 480 119 C 480 150, 480 165, 480 191" fill="none" stroke="#e3ad55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 541 119 C 590 142, 719 139, 758 170" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<rect x="92" y="162" width="196" height="64" rx="12" fill="#161b22" stroke="#57c5cf" stroke-width="2"/>
+<circle cx="114" cy="185" r="6" fill="#57c5cf"/>
+<text class="sans" x="130" y="189" fill="#e6edf3" font-size="17" font-weight="720" text-anchor="start">AI memory</text>
+<text class="mono" x="130" y="209" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">durable context</text>
+<rect x="382" y="188" width="196" height="64" rx="12" fill="#161b22" stroke="#e3ad55" stroke-width="2"/>
+<circle cx="404" cy="211" r="6" fill="#e3ad55"/>
+<text class="sans" x="420" y="215" fill="#e6edf3" font-size="17" font-weight="720" text-anchor="start">runtime systems</text>
+<text class="mono" x="420" y="235" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">reliable execution</text>
+<rect x="672" y="162" width="196" height="64" rx="12" fill="#161b22" stroke="#b8a0ff" stroke-width="2"/>
+<circle cx="694" cy="185" r="6" fill="#b8a0ff"/>
+<text class="sans" x="710" y="189" fill="#e6edf3" font-size="17" font-weight="720" text-anchor="start">developer tooling</text>
+<text class="mono" x="710" y="209" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">agent workflows</text>
+<path d="M 190 226 C 187 255, 183 264, 176 282" fill="none" stroke="#57c5cf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<circle cx="176" cy="298" r="9" fill="#0d1117" stroke="#57c5cf" stroke-width="3"/>
+<circle cx="176" cy="298" r="3" fill="#57c5cf"/>
+<path d="M 168 306 C 132 326, 102 337, 88 361" fill="none" stroke="#57c5cf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 176 307 C 184 360, 192 395, 200 418" fill="none" stroke="#57c5cf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 184 306 C 240 319, 290 326, 318 338" fill="none" stroke="#57c5cf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<rect x="13" y="364" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="13" y="364" width="4" height="54" rx="2" fill="#57c5cf"/>
+<text class="sans" x="29" y="386" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">smritea-sdk</text>
+<text class="mono" x="29" y="404" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">five-language SDK</text>
+<rect x="125" y="421" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="125" y="421" width="4" height="54" rx="2" fill="#57c5cf"/>
+<text class="sans" x="141" y="443" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">pedantigo</text>
+<text class="mono" x="141" y="461" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">types + schema</text>
+<rect x="243" y="341" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="243" y="341" width="4" height="54" rx="2" fill="#57c5cf"/>
+<text class="sans" x="259" y="363" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">databridge</text>
+<text class="mono" x="259" y="381" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">incremental ingestion</text>
+<path d="M 480 252 C 480 274, 480 289, 480 309" fill="none" stroke="#e3ad55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<circle cx="480" cy="324" r="9" fill="#0d1117" stroke="#e3ad55" stroke-width="3"/>
+<circle cx="480" cy="324" r="3" fill="#e3ad55"/>
+<path d="M 472 332 C 442 362, 421 386, 410 410" fill="none" stroke="#e3ad55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 488 332 C 530 376, 547 432, 550 474" fill="none" stroke="#e3ad55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<rect x="335" y="413" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="335" y="413" width="4" height="54" rx="2" fill="#e3ad55"/>
+<text class="sans" x="351" y="435" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">smartcache</text>
+<text class="mono" x="351" y="453" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">cache semantics</text>
+<rect x="475" y="477" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="475" y="477" width="4" height="54" rx="2" fill="#e3ad55"/>
+<text class="sans" x="491" y="499" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">conveyor</text>
+<text class="mono" x="491" y="517" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">concurrent pipelines</text>
+<path d="M 770 226 C 771 250, 771 266, 771 286" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<circle cx="771" cy="302" r="9" fill="#0d1117" stroke="#b8a0ff" stroke-width="3"/>
+<circle cx="771" cy="302" r="3" fill="#b8a0ff"/>
+<path d="M 763 310 C 721 330, 684 347, 664 372" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 779 310 C 818 333, 851 347, 865 379" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 776 312 C 771 354, 758 393, 748 447" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<circle cx="748" cy="462" r="9" fill="#0d1117" stroke="#b8a0ff" stroke-width="3"/>
+<circle cx="748" cy="462" r="3" fill="#b8a0ff"/>
+<path d="M 741 470 C 704 486, 674 500, 662 525" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<path d="M 755 470 C 799 488, 840 499, 857 525" fill="none" stroke="#b8a0ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-dark)"/>
+<rect x="589" y="375" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="589" y="375" width="4" height="54" rx="2" fill="#b8a0ff"/>
+<text class="sans" x="605" y="397" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">kangaroo</text>
+<text class="mono" x="605" y="415" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">task-board plugin</text>
+<rect x="790" y="382" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="790" y="382" width="4" height="54" rx="2" fill="#b8a0ff"/>
+<text class="sans" x="806" y="404" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">cld-gateway</text>
+<text class="mono" x="806" y="422" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">compatible proxy</text>
+<rect x="587" y="528" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="587" y="528" width="4" height="54" rx="2" fill="#b8a0ff"/>
+<text class="sans" x="603" y="550" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">opencode-migration</text>
+<text class="mono" x="603" y="568" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">agent migration kit</text>
+<rect x="782" y="528" width="150" height="54" rx="9" fill="#0d1117" stroke="#30363d"/>
+<rect x="782" y="528" width="4" height="54" rx="2" fill="#b8a0ff"/>
+<text class="sans" x="798" y="550" fill="#e6edf3" font-size="13" font-weight="700" text-anchor="start">claude-assets</text>
+<text class="mono" x="798" y="568" fill="#9aa7b5" font-size="10" font-weight="400" text-anchor="start">portable assets</text>
+<line x1="28" y1="585" x2="932" y2="585" stroke="#30363d"/>
+<circle cx="36" cy="602" r="5" fill="#57c5cf"/>
+<text class="mono" x="49" y="606" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">AI memory</text>
+<circle cx="166" cy="602" r="5" fill="#e3ad55"/>
+<text class="mono" x="179" y="606" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">runtime systems</text>
+<circle cx="345" cy="602" r="5" fill="#b8a0ff"/>
+<text class="mono" x="358" y="606" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="start">developer tooling</text>
+<text class="mono" x="932" y="606" fill="#9aa7b5" font-size="11" font-weight="400" text-anchor="end">theme edges show what connects the work</text>
 </svg>
