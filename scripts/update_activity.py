@@ -7,6 +7,7 @@ import argparse
 import datetime as dt
 import email.utils
 import html
+from html.parser import HTMLParser
 import json
 import os
 from pathlib import Path
@@ -45,6 +46,37 @@ class Article:
     source: str
     priority: int
     published: dt.datetime
+    summary: str = ""
+    image_url: str | None = None
+
+
+class TextExtractor(HTMLParser):
+    """Extract visible text from feed descriptions without retaining markup."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.fragments: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        self.fragments.append(data)
+
+    def text(self) -> str:
+        return " ".join("".join(self.fragments).split())
+
+
+class OpenGraphImageExtractor(HTMLParser):
+    """Read only the canonical Open Graph image declaration from an article page."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.image_url: str | None = None
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "meta" or self.image_url is not None:
+            return
+        values = {name.lower(): value or "" for name, value in attrs}
+        if values.get("property", "").lower() == "og:image":
+            self.image_url = values.get("content", "").strip() or None
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -123,6 +155,29 @@ def sanitize_text(value: str) -> str:
     for character in "`*_[]<>":
         text = text.replace(character, f"\\{character}")
     return text
+
+
+def plain_text(value: str, *, limit: int = 190) -> str:
+    """Convert an untrusted feed summary to compact, visible text only."""
+    parser = TextExtractor()
+    try:
+        parser.feed(html.unescape(value))
+        parser.close()
+        text = parser.text()
+    except ValueError:
+        text = re.sub(r"<[^>]*>", "", html.unescape(value))
+        text = " ".join(text.split())
+    if len(text) <= limit:
+        return text
+    return text[: limit - 1].rstrip() + "…"
+
+
+def is_safe_https(url: str) -> bool:
+    try:
+        parsed = urllib.parse.urlsplit(url)
+    except ValueError:
+        return False
+    return parsed.scheme == "https" and bool(parsed.hostname) and not parsed.username
 
 
 def normalize_title(value: str) -> str:
@@ -218,6 +273,11 @@ def parse_feed(payload: bytes, feed: dict[str, Any]) -> list[Article]:
             or child_text(item, "published")
             or child_text(item, "updated")
         )
+        summary = (
+            child_text(item, "description")
+            or child_text(item, "summary")
+            or child_text(item, "content")
+        )
         if not title or not is_allowed_https(link, feed["allowed_hosts"]):
             continue
         try:
@@ -231,6 +291,7 @@ def parse_feed(payload: bytes, feed: dict[str, Any]) -> list[Article]:
                 source=str(feed["name"]),
                 priority=int(feed.get("priority", 100)),
                 published=published,
+                summary=plain_text(summary),
             )
         )
     return articles
@@ -265,6 +326,46 @@ def dedupe_articles(articles: Iterable[Article]) -> list[Article]:
     return sorted(unique, key=lambda item: item.published, reverse=True)
 
 
+def fetch_open_graph_image(article: Article, feed: dict[str, Any]) -> str | None:
+    """Fetch an article's image only when its feed explicitly opts into this."""
+    if not feed.get("fetch_open_graph_image"):
+        return None
+    image_hosts = feed.get("image_hosts")
+    if not isinstance(image_hosts, list) or not is_allowed_https(article.url, feed["allowed_hosts"]):
+        return None
+    try:
+        payload = fetch_bytes(article.url, accept="text/html, application/xhtml+xml")
+        extractor = OpenGraphImageExtractor()
+        extractor.feed(payload.decode("utf-8", errors="replace"))
+        extractor.close()
+    except (SourceError, ValueError):
+        return None
+    candidate = extractor.image_url
+    if not candidate or not is_allowed_https(candidate, image_hosts):
+        return None
+    return normalize_url(candidate)
+
+
+def enrich_articles(articles: Iterable[Article], feeds: Iterable[dict[str, Any]], limit: int) -> list[Article]:
+    """Attach optional Open Graph previews after dedupe, never before selection."""
+    feeds_by_name = {str(feed.get("name", "")): feed for feed in feeds}
+    enriched: list[Article] = []
+    for article in dedupe_articles(articles)[:limit]:
+        image_url = fetch_open_graph_image(article, feeds_by_name.get(article.source, {}))
+        enriched.append(
+            Article(
+                title=article.title,
+                url=article.url,
+                source=article.source,
+                priority=article.priority,
+                published=article.published,
+                summary=article.summary,
+                image_url=image_url,
+            )
+        )
+    return enriched
+
+
 def render_releases(releases: Iterable[Release], limit: int) -> str:
     newest_by_repository: dict[str, Release] = {}
     for release in releases:
@@ -280,22 +381,62 @@ def render_releases(releases: Iterable[Release], limit: int) -> str:
     )[:limit]
     if not selected:
         return "_No published releases yet._"
-    return "\n".join(
-        f"- **[{sanitize_text(item.repository)} — {sanitize_text(item.label)}]({item.url})** "
-        f"<sub>{item.published.date().isoformat()}</sub>"
-        for item in selected
-    )
+    rows: list[str] = []
+    for item in selected:
+        if not is_allowed_https(item.url, ["github.com"]):
+            continue
+        rows.extend(
+            (
+                "  <tr>",
+                f'    <td width="180" valign="top"><strong>{html.escape(item.repository)}</strong><br><sub>Released {item.published.date().isoformat()}</sub></td>',
+                f'    <td valign="top"><a href="{html.escape(item.url, quote=True)}"><strong>{html.escape(item.label)}</strong></a><br><sub>Latest stable public release</sub></td>',
+                "  </tr>",
+            )
+        )
+    if not rows:
+        return "_No safely linkable releases yet._"
+    return "\n".join(("<table>", *rows, "</table>"))
 
 
-def render_articles(articles: Iterable[Article], limit: int) -> str:
-    selected = dedupe_articles(articles)[:limit]
+def render_articles(
+    articles: Iterable[Article],
+    limit: int,
+    *,
+    image_hosts_by_source: dict[str, list[str]] | None = None,
+) -> str:
+    selected = list(articles)[:limit]
     if not selected:
         return "_No articles published yet._"
-    return "\n".join(
-        f"- **[{sanitize_text(item.title)}]({item.url})** "
-        f"<sub>{sanitize_text(item.source)} · {item.published.date().isoformat()}</sub>"
-        for item in selected
-    )
+    rows: list[str] = []
+    for item in selected:
+        if not is_safe_https(item.url):
+            continue
+        title = html.escape(plain_text(item.title, limit=140))
+        source = html.escape(plain_text(item.source, limit=60))
+        summary = html.escape(plain_text(item.summary, limit=190))
+        url = html.escape(item.url, quote=True)
+        allowed_image_hosts = (image_hosts_by_source or {}).get(item.source, [])
+        if item.image_url and is_allowed_https(item.image_url, allowed_image_hosts):
+            image = html.escape(item.image_url, quote=True)
+            rows.extend(
+                (
+                    "  <tr>",
+                    f'    <td width="190" valign="top"><a href="{url}"><img src="{image}" width="180" alt="{title}"></a></td>',
+                    f'    <td valign="top"><a href="{url}"><strong>{title}</strong></a><br><sub>{source} · {item.published.date().isoformat()}</sub><br><br>{summary}</td>',
+                    "  </tr>",
+                )
+            )
+        else:
+            rows.extend(
+                (
+                    "  <tr>",
+                    f'    <td valign="top"><a href="{url}"><strong>{title}</strong></a><br><sub>{source} · {item.published.date().isoformat()}</sub><br><br>{summary}</td>',
+                    "  </tr>",
+                )
+            )
+    if not rows:
+        return "_No safely linkable articles yet._"
+    return "\n".join(("<table>", *rows, "</table>"))
 
 
 def replace_section(document: str, section: str, rendered: str) -> str:
@@ -335,10 +476,20 @@ def refresh_document(
 
     try:
         articles = fetch_articles(activity["feeds"])
+        articles = enrich_articles(articles, activity["feeds"], int(activity["article_limit"]))
+        image_hosts_by_source = {
+            str(feed.get("name", "")): list(feed.get("image_hosts", []))
+            for feed in activity["feeds"]
+            if isinstance(feed.get("image_hosts"), list)
+        }
         updated = replace_section(
             updated,
             WRITE_SECTION,
-            render_articles(articles, int(activity["article_limit"])),
+            render_articles(
+                articles,
+                int(activity["article_limit"]),
+                image_hosts_by_source=image_hosts_by_source,
+            ),
         )
     except (SourceError, KeyError, TypeError, ValueError) as exc:
         warnings.append(f"WRITE was preserved: {exc}")

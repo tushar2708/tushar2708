@@ -29,6 +29,8 @@
         "name": "Smritea Blog",
         "url": "https://blog.smritea.ai/rss.xml",
         "allowed_hosts": ["blog.smritea.ai"],
+        "image_hosts": ["blog.smritea.ai"],
+        "fetch_open_graph_image": true,
         "priority": 0
       },
       {

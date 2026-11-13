@@ -87,16 +87,14 @@ class ReleaseTests(unittest.TestCase):
 
         rendered = updater.render_releases(releases, 3)
 
-        self.assertEqual(rendered.count("[Bytonomics/cld-gateway"), 1)
+        self.assertEqual(rendered.count("<strong>Bytonomics/cld-gateway</strong>"), 1)
         self.assertIn("v1.1.5", rendered)
         self.assertNotIn("v1.1.4", rendered)
         self.assertIn("Bytonomics/smartcache", rendered)
         self.assertIn("SmrutAI/pedantigo", rendered)
-        repositories = [
-            line.split(" — ", maxsplit=1)[0].removeprefix("- [")
-            for line in rendered.splitlines()
-        ]
-        self.assertEqual(len(repositories), len(set(repositories)))
+        self.assertIn("<table>", rendered)
+        self.assertIn("Latest stable public release", rendered)
+        self.assertEqual(rendered.count("<tr>"), 3)
 
 
 class FeedTests(unittest.TestCase):
@@ -139,10 +137,94 @@ class FeedTests(unittest.TestCase):
             published=dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc),
         )
 
-        rendered = updater.render_articles([article], 1)
+        rendered = updater.render_articles(
+            [article],
+            1,
+            image_hosts_by_source={"Smritea Blog": ["blog.smritea.ai"]},
+        )
 
         self.assertNotIn("<script>", rendered)
-        self.assertIn(r"A \[link\] bad()", rendered)
+        self.assertIn("A [link] bad()", rendered)
+        self.assertIn("<table>", rendered)
+
+    @mock.patch("update_activity.fetch_bytes")
+    def test_open_graph_image_is_limited_to_configured_hosts(self, fetch_bytes: mock.Mock) -> None:
+        article = updater.Article(
+            "Safe post",
+            "https://blog.smritea.ai/safe-post",
+            "Smritea Blog",
+            0,
+            dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc),
+        )
+        feed = {
+            "allowed_hosts": ["blog.smritea.ai"],
+            "image_hosts": ["blog.smritea.ai"],
+            "fetch_open_graph_image": True,
+        }
+        fetch_bytes.return_value = b'<meta property="og:image" content="https://blog.smritea.ai/safe-post/og.png?utm_source=rss">'
+
+        image = updater.fetch_open_graph_image(article, feed)
+
+        self.assertEqual(image, "https://blog.smritea.ai/safe-post/og.png")
+        fetch_bytes.return_value = b'<meta property="og:image" content="https://evil.example/image.png">'
+        self.assertIsNone(updater.fetch_open_graph_image(article, feed))
+
+    def test_rich_article_row_escapes_summary_and_uses_safe_thumbnail(self) -> None:
+        article = updater.Article(
+            "A <title>",
+            "https://blog.smritea.ai/safe",
+            "Smritea Blog",
+            0,
+            dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc),
+            summary="Summary with <b>markup</b> & details",
+            image_url="https://blog.smritea.ai/safe/og.png",
+        )
+
+        rendered = updater.render_articles(
+            [article],
+            1,
+            image_hosts_by_source={"Smritea Blog": ["blog.smritea.ai"]},
+        )
+
+        self.assertIn('width="180"', rendered)
+        self.assertIn('alt="A"', rendered)
+        self.assertNotIn("<title>", rendered)
+        self.assertIn("Summary with markup &amp; details", rendered)
+        self.assertNotIn("<b>markup</b>", rendered)
+
+    def test_article_image_from_an_unconfigured_host_falls_back_to_text_only(self) -> None:
+        article = updater.Article(
+            "Unconfigured image",
+            "https://blog.smritea.ai/safe",
+            "Smritea Blog",
+            0,
+            dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc),
+            image_url="https://evil.example/image.png",
+        )
+
+        rendered = updater.render_articles(
+            [article],
+            1,
+            image_hosts_by_source={"Smritea Blog": ["blog.smritea.ai"]},
+        )
+
+        self.assertNotIn("<img", rendered)
+        self.assertIn("Unconfigured image", rendered)
+
+    def test_article_without_image_uses_text_only_row(self) -> None:
+        article = updater.Article(
+            "Text only",
+            "https://dev.to/tushar_bytonomics/text-only",
+            "DEV",
+            1,
+            dt.datetime(2026, 11, 1, tzinfo=dt.timezone.utc),
+            summary="A useful update.",
+        )
+
+        rendered = updater.render_articles([article], 1)
+
+        self.assertIn("A useful update.", rendered)
+        self.assertNotIn('width="180"', rendered)
 
 
 class DocumentTests(unittest.TestCase):
