@@ -104,7 +104,7 @@
   </tr>
   <tr>
     <td width="180" valign="top"><strong>SmrutAI/pedantigo</strong><br><sub>Released 2026-09-03</sub></td>
-    <td valign="top"><a href="https://github.com/SmrutAI/pedantigo/releases/tag/v2.1.3"><strong>v2.1.3</strong></a><br><sub>Latest stable public release</sub></td>
+    <td valign="top"><a href="https://github.com/Pedantigo/pedantigo/releases/tag/v2.1.3"><strong>v2.1.3</strong></a><br><sub>Latest stable public release</sub></td>
   </tr>
 </table>
 <!-- PROFILE:BUILD:END -->
